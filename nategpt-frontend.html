@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NateGPT</title>
+</head>
+<body>
+    <h1>NateGPT</h1>
+    <div id="message-history"></div>
+    <input id="input"></input>
+    <button id="send">Send ></button>
+
+    <script>
+        let messageHistory = []
+
+        const api = "http://localhost:11434/api/chat";
+        const messageHistoryElement = document.getElementById("message-history");
+        const inputElement = document.getElementById("input");
+
+        const sendMessage = async () => {
+            const message = input.value
+
+            messageHistory.push({ role: "user", content: message })
+
+            const response = await fetch(api, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ 
+                    model: "llama2-uncensored",
+                    messages: messageHistory
+                })
+            });
+
+            const data = await response.json()
+            const messageElement = document.createElement("div")
+            messageElement.innerText = data.message
+            messageHistory.appendChild(messageElement)
+        }
+
+        document.getElementById("send").addEventListener("click", sendMessage)
+    </script>
+</body>
+</html>

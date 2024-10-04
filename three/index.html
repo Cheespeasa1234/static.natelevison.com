@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+    <title>Vite + TS</title>
+</head>
+
+<body>
+    <div id="menu">
+        <div id="menu_posx"></div>
+        <div id="menu_posy"></div>
+        <div id="menu_posz"></div>
+        <div id="menu_camx"></div>
+        <div id="menu_camy"></div>
+        <div id="menu_camz"></div>
+    </div>
+    <div id="app"></div>
+    <div id="cross">+</div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+<style>
+    body {
+        overflow: hidden;
+    }
+    #menu {
+        display: flex;
+        height: 20px;
+        border: 2px solid red;
+    }
+    #cross {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999; /* Set a higher z-index to make sure it stays on top */
+        color: white;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional box shadow for styling */
+    }
+</style>
+
+</html>
